@@ -7,18 +7,10 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name="marca_coche")
-public class MarcaCocheEntity {
-
-
+public class BrandCarEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column(name = "descripcion")
     private String description;
-
-
-
-
-
 }
