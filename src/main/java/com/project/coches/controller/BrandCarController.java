@@ -20,7 +20,6 @@ public class BrandCarController {
         return ResponseEntity.ok(iBrandCarService.getAll());
         //return ResponseEntity.status(HttpStatus.OK)  ALTERNATIVA B
         //        .body(iBrandCarService.getAll());
-
         // return new ResponseEntity<>(iBrandCarService.getAll(),HttpStatus.OK);   ALTERNATIVA C
     }
     @GetMapping(path = "/{id}")
@@ -47,7 +46,6 @@ public class BrandCarController {
                     .body(brandCarPojo);
         }
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean>delete(@PathVariable Integer id){
         return new ResponseEntity<>(this.iBrandCarService.delete(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);

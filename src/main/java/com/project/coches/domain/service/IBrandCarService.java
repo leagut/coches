@@ -10,6 +10,5 @@ public interface IBrandCarService {
     Optional<BrandCarPojo> getBrandCar(Integer id);
     BrandCarPojo save(BrandCarPojo newBrandCar);
     boolean delete(Integer idBrandCar);
-
     BrandCarPojo update(BrandCarPojo newBrandCar);
 }
