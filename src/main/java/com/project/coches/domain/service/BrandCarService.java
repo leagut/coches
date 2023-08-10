@@ -11,25 +11,40 @@ import java.util.Optional;
 @Service
 public class BrandCarService implements IBrandCarService {
     private final IBrandCarRepository iBrandCarRepository;
+
     @Override
     public List<BrandCarPojo> getAll() {
         return iBrandCarRepository.getAll();
     }
+
     @Override
     public Optional<BrandCarPojo> getBrandCar(Integer id) {
         return iBrandCarRepository.getBrandCar(id);
     }
+
     @Override
     public BrandCarPojo save(BrandCarPojo newBrandCar) {
         return iBrandCarRepository.save(newBrandCar);
     }
+
     @Override
     public boolean delete(Integer idBrandCar) {
-        try {
-            iBrandCarRepository.delete(idBrandCar);
-            return true;
-        } catch (Exception e){
+
+        if (iBrandCarRepository.getBrandCar(idBrandCar).isEmpty()) {
             return false;
         }
+        iBrandCarRepository.delete(idBrandCar);
+        return true;
+
     }
+
+    @Override
+    public BrandCarPojo update(BrandCarPojo newBrandCar) {
+        if (iBrandCarRepository.getBrandCar(newBrandCar.getId()).isEmpty()) {
+            return null;
+        }
+        return iBrandCarRepository.save(newBrandCar);
+    }
+
+
 }
