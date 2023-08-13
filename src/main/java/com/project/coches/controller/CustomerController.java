@@ -35,12 +35,10 @@ public class CustomerController {
 
     @PostMapping()
     public ResponseEntity<ResponseCustomerDto>save(@RequestBody CustomerDto customerDtoNew){
-        try {
+
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(iCustomerService.save(customerDtoNew));
-        } catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseCustomerDto(e.getMessage()));
-        }
+
     }
     @PatchMapping
     public ResponseEntity<CustomerDto> update(@RequestBody CustomerDto customerDtoUpdate) {

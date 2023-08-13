@@ -3,6 +3,7 @@ package com.project.coches.domain.service;
 import com.project.coches.domain.dto.CustomerDto;
 import com.project.coches.domain.dto.ResponseCustomerDto;
 import com.project.coches.domain.repository.ICustomerRepository;
+import com.project.coches.exeption.EmailValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class CustomerService implements ICustomerService {
-
     private final ICustomerRepository iCustomerRepository;
-
-
-
     @Override
     public List<CustomerDto> getAll() {
         return iCustomerRepository.getAll();
@@ -41,10 +38,7 @@ public class CustomerService implements ICustomerService {
 /*    @Override
     public ResponseCustomerDto save(CustomerDto newCustomer) {
 
-        if (!newCustomer.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
-                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
-            throw new EmailValidationException();
-        }
+
 
         if (getCustomerByCardId(newCustomer.getCardId()).isPresent() || getCustomerByEmail(newCustomer.getEmail()).isPresent()) {
             throw new CustomerExistsException();
@@ -60,6 +54,12 @@ public class CustomerService implements ICustomerService {
     }*/
 
     public ResponseCustomerDto save(CustomerDto newCustomer) {
+
+        if (!newCustomer.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
+            throw new EmailValidationException();
+        }
+
         String passwordGenerated = generateRandomPassword(10);
         newCustomer.setPassword(passwordGenerated);
         newCustomer.setActive(1);
