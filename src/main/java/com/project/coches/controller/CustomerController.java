@@ -15,24 +15,19 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/customers")
 public class CustomerController {
-
     private final ICustomerService iCustomerService;
-
     @GetMapping()
     public ResponseEntity<List<CustomerDto>> getAll() {
         return ResponseEntity.ok(iCustomerService.getAll());
     }
-
     @GetMapping(path = "/{cardId}")
     public ResponseEntity<CustomerDto> getCustomerByCardId(@PathVariable String cardId) {
         return ResponseEntity.of(iCustomerService.getCustomerByCardId(cardId));
     }
-
     @GetMapping(path = "/email/{email}")
     public ResponseEntity<CustomerDto> getCustomerByEmail(@PathVariable String email) {
         return ResponseEntity.of(iCustomerService.getCustomerByEmail(email));
     }
-
     @PostMapping()
     public ResponseEntity<ResponseCustomerDto>save(@RequestBody CustomerDto customerDtoNew){
 
@@ -44,7 +39,6 @@ public class CustomerController {
     public ResponseEntity<CustomerDto> update(@RequestBody CustomerDto customerDtoUpdate) {
         return ResponseEntity.of(iCustomerService.update(customerDtoUpdate));
     }
-
     @DeleteMapping(path = "/{cardId}")
     public ResponseEntity<Boolean> delete(@PathVariable String cardId) {
         return new ResponseEntity<>(this.iCustomerService.delete(cardId) ? HttpStatus.OK : HttpStatus.NOT_FOUND);

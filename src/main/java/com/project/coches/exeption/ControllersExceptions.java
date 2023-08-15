@@ -11,7 +11,6 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class ControllersExceptions {
-
     @ExceptionHandler(EmailValidationException.class)
     public ResponseEntity<Map<String,String>>emailException(EmailValidationException emailValidationException){
         return ResponseEntity.status(HttpStatus.CONFLICT)

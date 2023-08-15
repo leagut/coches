@@ -54,12 +54,10 @@ public class CustomerService implements ICustomerService {
     }*/
 
     public ResponseCustomerDto save(CustomerDto newCustomer) {
-
         if (!newCustomer.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
             throw new EmailValidationException();
         }
-
         String passwordGenerated = generateRandomPassword(10);
         newCustomer.setPassword(passwordGenerated);
         newCustomer.setActive(1);
@@ -67,24 +65,18 @@ public class CustomerService implements ICustomerService {
         ResponseCustomerDto responseCustomerDto = new ResponseCustomerDto(passwordGenerated);
         return responseCustomerDto;
     }
-
     @Override
     public Optional<CustomerDto> update(CustomerDto modifyCustomer) {
-
         if (iCustomerRepository.getCustomerByCardId(modifyCustomer.getCardId()).isEmpty()) {
             return Optional.empty();
         }
-
         return Optional.of(iCustomerRepository.save(modifyCustomer));
     }
-
     @Override
     public boolean delete(String cardId) {
-
         if (iCustomerRepository.getCustomerByCardId(cardId).isEmpty()) {
             return false;
         }
-
         iCustomerRepository.delete(cardId);
         return true;
     }
@@ -92,23 +84,18 @@ public class CustomerService implements ICustomerService {
 
 
     // Método para generar una contraseña alfanumérica aleatoria de una longitud específica
-   private String generateRandomPassword(int len)
-    {
+   private String generateRandomPassword(int len) {
         // Rango ASCII – alfanumérico (0-9, a-z, A-Z)
         final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder();
-
         // cada iteración del bucle elige aleatoriamente un carácter del dado
         // rango ASCII y lo agrega a la instancia `StringBuilder`
-
         for (int i = 0; i < len; i++)
         {
             int randomIndex = random.nextInt(chars.length());
             sb.append(chars.charAt(randomIndex));
         }
-
         return sb.toString();
     }
 
