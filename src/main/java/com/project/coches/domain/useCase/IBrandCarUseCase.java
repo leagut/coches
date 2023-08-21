@@ -1,14 +1,15 @@
-package com.project.coches.domain.service;
+package com.project.coches.domain.useCase;
 
 import com.project.coches.domain.dto.BrandCarDto;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface IBrandCarService {
+public interface IBrandCarUseCase {
     List<BrandCarDto> getAll();
     Optional<BrandCarDto> getBrandCar(Integer id);
     BrandCarDto save(BrandCarDto newBrandCar);
     boolean delete(Integer idBrandCar);
     BrandCarDto update(BrandCarDto newBrandCar);
+
 }

@@ -2,6 +2,7 @@ package com.project.coches.domain.service;
 
 import com.project.coches.domain.dto.BrandCarDto;
 import com.project.coches.domain.repository.IBrandCarRepository;
+import com.project.coches.domain.useCase.IBrandCarUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 @RequiredArgsConstructor
 @Service
-public class BrandCarService implements IBrandCarService {
+public class BrandCarService implements IBrandCarUseCase {
     private final IBrandCarRepository iBrandCarRepository;
     @Override
     public List<BrandCarDto> getAll() {
@@ -31,11 +32,25 @@ public class BrandCarService implements IBrandCarService {
         iBrandCarRepository.delete(idBrandCar);
         return true;
     }
+
     @Override
     public BrandCarDto update(BrandCarDto newBrandCar) {
-        if (iBrandCarRepository.getBrandCar(newBrandCar.getId()).isEmpty()) {
+        if(iBrandCarRepository.getBrandCar(newBrandCar.getId()).isEmpty()){
             return null;
         }
-        return iBrandCarRepository.save(newBrandCar);
+        return  iBrandCarRepository.save(newBrandCar);
     }
+
+
+    /*@Override
+    public Optional<BrandCarDto> update(BrandCarDto newBrandCar) {
+
+        if (iBrandCarRepository.getBrandCar(newBrandCar.getId()).isEmpty()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(iBrandCarRepository.save(newBrandCar));
+    }*/
+
+
 }

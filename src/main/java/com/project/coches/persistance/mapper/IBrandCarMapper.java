@@ -15,14 +15,15 @@ public interface IBrandCarMapper {
      * @param marcaEntity
      * @return pojo convertido
      */
-    @Mapping(source = "id" , target = "id")
+    @Mapping(source = "id", target = "id")
     @Mapping(source = "description", target = "description")
     BrandCarDto toMarcaCocheDto(BrandCarEntity marcaEntity);
 
     @InheritInverseConfiguration
+    @Mapping(target = "carEntities", ignore = true)
     BrandCarEntity toMarcaCocheEntity(BrandCarDto marcaPojo);
 
     //retorna una lista transformada de marca de carros entities a pojo
-    List<BrandCarDto> toMarcasCocheDto(List<BrandCarEntity> brandCarEntity);
+    List<BrandCarDto> toMarcasCocheDto(List<BrandCarEntity> marcasCocheEntity);
 
 }
