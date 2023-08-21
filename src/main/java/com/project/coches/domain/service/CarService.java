@@ -31,6 +31,8 @@ public class CarService implements ICarUseCase {
     }
     @Override
     public CarDto save(CarDto newCar) {
+        System.out.println("desde el servicio");
+        System.out.println(newCar);
         return iCarRepository.save(newCar);
     }
     @Override

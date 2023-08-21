@@ -38,6 +38,7 @@ public class CarController {
 
     @PostMapping()
     public ResponseEntity<CarDto> save(@RequestBody CarDto carDtoNew) {
+
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(iCarUseCase.save(carDtoNew));
 
