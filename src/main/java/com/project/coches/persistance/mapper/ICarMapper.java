@@ -12,7 +12,7 @@ public interface ICarMapper {
   //  @Mapping(source = "brandCarEntity.description", target = "brandCarString")
     CarDto toCarDto(CarEntity carEntity);
     @Mapping(target = "brandCarEntity", ignore = true)
-   // @Mapping(target = "carPurchaseEntity", ignore = true)
+    @Mapping(target = "carPurchaseEntity", ignore = true)
     CarEntity toCarEntity(CarDto carDto);
     List<CarDto> toCarsDto(List<CarEntity> carEntityList);
 }

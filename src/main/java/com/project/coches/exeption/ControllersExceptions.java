@@ -10,20 +10,18 @@ import java.util.Collections;
 import java.util.Map;
 
 @RestControllerAdvice
-public class ControllersExceptions {
-    @ExceptionHandler(EmailValidationException.class)
+    public class ControllersExceptions {
+   /* @ExceptionHandler(EmailValidationException.class)
     public ResponseEntity<Map<String,String>>emailException(EmailValidationException emailValidationException){
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap("ERROR",emailValidationException.getMessage()));
     }
-
-
-
-/*    @ExceptionHandler({CustomerExistsException.class, CustomerNotExistException.class, PasswordIncorrectException.class, EmailValidationException.class, PurchaseNotExistException.class})
+*/
+   @ExceptionHandler({CustomerExistsException.class, CustomerNotExistException.class, PasswordIncorrectException.class, EmailValidationException.class, PurchaseNotExistException.class})
     public ProblemDetail badRequestException(RuntimeException runtimeException) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, runtimeException.getMessage());
     }
-
+/*
     @ExceptionHandler({UnauthorizedException.class, AuthenticationException.class, JWTVerificationException.class})
     public ProblemDetail unauthorizedException(AuthenticationException authenticationException) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, authenticationException.getMessage());
