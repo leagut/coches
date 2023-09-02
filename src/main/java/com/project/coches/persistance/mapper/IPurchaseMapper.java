@@ -14,7 +14,6 @@ public interface IPurchaseMapper {
     PurchaseRequestDto toPurchaseRequestDto(PurchaseEntity purchaseEntity);
     @Mapping(target = "customerEntity", ignore = true) 
     PurchaseEntity toPurchaseEntity(PurchaseRequestDto purchaseRequestDto);
-
     List<PurchaseRequestDto> toPurchasesDto(List<PurchaseEntity> purchaseEntityList);
 
 }

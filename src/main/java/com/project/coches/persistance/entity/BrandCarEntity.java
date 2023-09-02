@@ -29,5 +29,5 @@ public class BrandCarEntity {
                 ", description='" + description + '\'' +
                 '}';
     }
-
+    
 }

@@ -23,5 +23,5 @@ public class CarDto {
     private String steering;
     private String category;
     private String imagePath;
-    // private Integer stock;
+     private Integer stock;
 }

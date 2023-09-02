@@ -45,7 +45,7 @@ public class CarEntity {
     @Column(name = "ruta_imagen")
     private String imagePath;
 
-   // private Integer stock;
+    private Integer stock;
 
     //el manytoone existe solo en el backend no en la db por eso tiene insertable false y updatable
     @ManyToOne

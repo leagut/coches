@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 /*
 dto de la consulta de una compra
 */
@@ -15,6 +17,5 @@ public class PurchaseResponseDto {
     private LocalDateTime date;
     private Double total;
     private String paymentMethod;
-
-    //   private List<CarPurchaseResponseDto> carsPurchase;
+    private List<CarPurchaseResponseDto> carsPurchase;
 }
