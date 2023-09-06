@@ -4,8 +4,11 @@ import com.project.coches.domain.dto.CustomerDto;
 import com.project.coches.domain.dto.ResponseCustomerDto;
 import com.project.coches.domain.repository.ICustomerRepository;
 import com.project.coches.domain.useCase.ICustomerUseCase;
+import com.project.coches.exeption.CustomerExistsException;
 import com.project.coches.exeption.EmailValidationException;
+import com.project.coches.security.Roles;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -16,6 +19,7 @@ import java.util.Optional;
 @Service
 public class CustomerService implements ICustomerUseCase {
     private final ICustomerRepository iCustomerRepository;
+    private final PasswordEncoder passwordEncoder;
     @Override
     public List<CustomerDto> getAll() {
         return iCustomerRepository.getAll();
@@ -36,10 +40,8 @@ public class CustomerService implements ICustomerUseCase {
      * @param newCustomer
      * @return
      */
-/*    @Override
+    @Override
     public ResponseCustomerDto save(CustomerDto newCustomer) {
-
-
 
         if (getCustomerByCardId(newCustomer.getCardId()).isPresent() || getCustomerByEmail(newCustomer.getEmail()).isPresent()) {
             throw new CustomerExistsException();
@@ -52,9 +54,9 @@ public class CustomerService implements ICustomerUseCase {
         iCustomerRepository.save(newCustomer);
 
         return new ResponseCustomerDto(passwordGenerated);
-    }*/
+    }
 
-    public ResponseCustomerDto save(CustomerDto newCustomer) {
+/*    public ResponseCustomerDto save(CustomerDto newCustomer) {
         if (!newCustomer.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
             throw new EmailValidationException();
@@ -65,7 +67,7 @@ public class CustomerService implements ICustomerUseCase {
         iCustomerRepository.save(newCustomer);
         ResponseCustomerDto responseCustomerDto = new ResponseCustomerDto(passwordGenerated);
         return responseCustomerDto;
-    }
+    }*/
     @Override
     public Optional<CustomerDto> update(CustomerDto modifyCustomer) {
         if (iCustomerRepository.getCustomerByCardId(modifyCustomer.getCardId()).isEmpty()) {

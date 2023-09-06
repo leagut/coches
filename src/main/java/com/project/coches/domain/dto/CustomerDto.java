@@ -12,4 +12,5 @@ public class CustomerDto {
     private Double numberCellphone;
     private Integer active;
     private String password;
+    private String rol;
 }
