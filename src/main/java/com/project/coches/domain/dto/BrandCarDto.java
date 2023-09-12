@@ -1,12 +1,11 @@
-package com.project.coches.domain.pojo;
+package com.project.coches.domain.dto;
 
-import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class MarcaCochePojo {
+public class BrandCarDto {
     private Integer id;
 
     private String description;
