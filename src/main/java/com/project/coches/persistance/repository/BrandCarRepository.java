@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 @RequiredArgsConstructor
 @Repository
-public class  BrandCarRepository implements IBrandCarRepository {
+public class    BrandCarRepository implements IBrandCarRepository {
 
     private final IBrandCarCrudRepository iBrandCarCrudRepository;
     private final IBrandCarMapper iBrandCarMapper;
